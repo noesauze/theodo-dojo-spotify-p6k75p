@@ -11,12 +11,10 @@ const trackUrls = [
   'https://p.scdn.co/mp3-preview/0f6b8a3524ec410020457da4cdd7717f9addce2f',
   'https://p.scdn.co/mp3-preview/ac28d1b0be285ed3bfd8e9fa5fad133776d7cf36',
 ];
-const AlbumCover = ({tr}) =>  {
+const AlbumCover = ({ tr }) => {
   const src = tr.track.album.images[0]?.url; // A changer ;)
-  return (
-      <img src={src} style={{ width: 400, height: 400 }} />
-  );
-}
+  return <img src={src} style={{ width: 400, height: 400 }} />;
+};
 const App = () => {
   const [trackIndex, setTrackIndex] = useState(0);
 
@@ -33,7 +31,7 @@ const App = () => {
   let nom: string;
   if (tracks) {
     nom = tracks[trackIndex]?.track.name;
-    console.log(tracks[0]?.track.album.images[0]?.url);
+    morceau = tracks[trackIndex];
   }
   console.log(nom);
   return (
@@ -45,7 +43,7 @@ const App = () => {
       <div className="App-images">
         <p>Il y a actuellement 20 chansons disponibles</p>
         <p>Chanson : {nom}</p>
-        <AlbumCover tr={tracks[trackIndex]} />
+        <AlbumCover tr={morceau} />
       </div>
       <audio src={tracks[trackIndex].track.preview_url} autoPlay controls />
       <button onClick={goToNextTrack}>Next track</button>
